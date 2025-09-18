@@ -5,25 +5,22 @@ const levelSchema = new mongoose.Schema({
   userAddress: {
     type: String,
     required: true,
-    lowercase: true,
-    index: true
+    lowercase: true
   },
-  
+
   // Referrer wallet address (upline)
   referrerAddress: {
     type: String,
     required: true,
-    lowercase: true,
-    index: true
+    lowercase: true
   },
-  
+
   // Level in the hierarchy (1-21)
   level: {
     type: Number,
     required: true,
     min: 1,
-    max: 21,
-    index: true
+    max: 21
   },
   
   // Investment made by this user
@@ -41,8 +38,7 @@ const levelSchema = new mongoose.Schema({
   // Status
   isActive: {
     type: Boolean,
-    default: true,
-    index: true
+    default: true
   },
   
   // Registration time

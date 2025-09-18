@@ -5,8 +5,7 @@ const investmentSchema = new mongoose.Schema({
   userAddress: {
     type: String,
     required: true,
-    lowercase: true,
-    index: true
+    lowercase: true
   },
   
   // Investment amount
@@ -20,14 +19,12 @@ const investmentSchema = new mongoose.Schema({
   txHash: {
     type: String,
     required: true,
-    unique: true,
-    index: true
+    unique: true
   },
-  
+
   blockNumber: {
     type: Number,
-    required: true,
-    index: true
+    required: true
   },
   
   // Investment type
@@ -41,8 +38,7 @@ const investmentSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['pending', 'confirmed', 'failed'],
-    default: 'confirmed',
-    index: true
+    default: 'confirmed'
   },
   
   // Investment time

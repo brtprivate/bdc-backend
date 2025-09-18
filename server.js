@@ -22,6 +22,7 @@ import investmentRoutes from './routes/investmentRoutes.js';
 import { startEventListener } from './services/eventListener.js';
 import { startSyncService } from './services/syncService.js';
 import logger from './utils/logger.js';
+import { initializeErrorSuppression } from './utils/errorSuppressor.js';
 
 // Get current directory
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +30,9 @@ const __dirname = dirname(__filename);
 
 // Load environment variables
 dotenv.config();
+
+// Initialize error suppression to reduce noise in logs
+initializeErrorSuppression();
 
 const app = express();
 const PORT = process.env.PORT || 5001; // Changed to 5001 since 5000 is in use
@@ -56,9 +60,31 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// CORS configuration - Allow all origins for development
+// CORS configuration - Production and development origins
+const allowedOrigins = [
+  'https://bdcstack.com',
+  'https://www.bdcstack.com',
+  'https://app.bdcstack.com',
+  'http://localhost:7050',
+  'http://localhost:7051',
+  'http://localhost:3000',
+  'http://127.0.0.1:7050',
+  'http://127.0.0.1:7051',
+  'http://127.0.0.1:3000'
+];
+
 app.use(cors({
-  origin: true, // Allow all origins
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      console.log('❌ CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
@@ -67,7 +93,12 @@ app.use(cors({
 
 // Additional CORS headers for all requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  // Set CORS headers for production domains
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+    res.header('Access-Control-Allow-Origin', origin || '*');
+  }
+
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -172,10 +203,7 @@ async function connectDatabase() {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/bdc_mlm';
     
-    await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri);
     
     logger.info('✅ Connected to MongoDB successfully');
     
@@ -266,9 +294,17 @@ async function startServer() {
       }
     });
     
-    // Start blockchain event listener
+    // Start blockchain event listener (only if enabled)
     if (process.env.NODE_ENV !== 'test') {
-      await startEventListener();
+      // Only start event listener if explicitly enabled to prevent rate limiting
+      if (process.env.ENABLE_EVENT_LISTENER === 'true') {
+        logger.info('🎧 Event listener enabled, starting...');
+        await startEventListener();
+      } else {
+        logger.info('🎧 Event listener disabled (to prevent RPC rate limiting)');
+        logger.info('ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable');
+      }
+
       await startSyncService();
     }
     

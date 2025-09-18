@@ -1621,3 +1621,518 @@
 {"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 10:30:00"}
 {"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 10:30:00"}
 {"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 10:30:00"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:36"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:37"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:37"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:37"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:37"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:37"}
+{"level":"info","message":"📊 Latest block: 61568385","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568385","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"level":"info","message":"🔄 Processing batch: 0 to 999","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:38"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x3e7","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x3e7\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x3e7\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:28:39","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:28:39"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:00"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:01"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:01"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:26"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:27"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:27"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:28"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:28"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:28"}
+{"level":"info","message":"📊 Latest block: 61568532","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568533","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:30:29","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:29"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:30"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:30"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:30"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:53"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:54"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:54"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:54"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:54"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:54"}
+{"level":"info","message":"📊 Latest block: 61568568","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568568","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:30:55","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:55"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:30:56"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:05"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:06"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:06"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:06"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:06"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:06"}
+{"level":"info","message":"📊 Latest block: 61568583","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568584","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:07"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:31:08","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:08"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:18"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:19"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:19"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:19"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:19"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:19"}
+{"level":"info","message":"📊 Latest block: 61568601","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568601","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:20"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:31:21","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:21"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:32"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:33"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:33"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:33"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:33"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:33"}
+{"level":"info","message":"📊 Latest block: 61568620","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:34"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:34"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:34"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:34"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568620","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:31:35","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:35"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:44"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:45"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:45"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:45"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:45"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:45"}
+{"level":"info","message":"📊 Latest block: 61568636","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:46"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:46"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:46"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:46"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568637","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:31:47","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:47"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:31:58"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:01"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:01"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:01"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:01"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:01"}
+{"level":"info","message":"📊 Latest block: 61568657","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568657","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:32:02","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:02"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:03"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:03"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:03"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:03"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:03"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:11"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:13"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:13"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:13"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:13"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:13"}
+{"level":"info","message":"📊 Latest block: 61568672","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568673","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:32:14","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:14"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:25"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:27"}
+{"level":"info","message":"🎧 Starting contract event listener...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:27"}
+{"level":"info","message":"🚀 Server running on port 5000","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:27"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:27"}
+{"level":"info","message":"📊 Health check: http://localhost:5000/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:27"}
+{"level":"info","message":"📊 Latest block: 61568692","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"📍 Contract address: 0xa204d59852fabde359aaf4b31b59eb5b0338c312","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"✅ Event listener started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"📚 Processing historical events...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"📊 Processing blocks 0 to 61568692","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"🔄 Processing batch: 0 to 99","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"code":"BAD_DATA","info":{"payload":{"id":8,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0xa204d59852fabde359aaf4b31b59eb5b0338c312","fromBlock":"0x0","toBlock":"0x63","topics":["0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a"]}]}},"level":"error","message":"❌ Error processing historical events: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)","service":"bdc-mlm-backend","shortMessage":"missing response for request","stack":"Error: missing response for request (value=[ { \"error\": { \"code\": -32005, \"message\": \"method eth_getLogs in batch triggered rate limit\" }, \"id\": null, \"jsonrpc\": \"2.0\" } ], info={ \"payload\": { \"id\": 8, \"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [ { \"address\": \"0xa204d59852fabde359aaf4b31b59eb5b0338c312\", \"fromBlock\": \"0x0\", \"toBlock\": \"0x63\", \"topics\": [ \"0x309bb360e8b69c23937ccc5fb01f9aeeead1c95a99604e175113ff82f2b1723a\" ] } ] } }, code=BAD_DATA, version=6.15.0)\n    at makeError (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/utils/errors.js:132:21)\n    at file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/node_modules/.pnpm/ethers@6.15.0/node_modules/ethers/lib.esm/providers/provider-jsonrpc.js:289:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-09-18 11:32:28","value":[{"error":{"code":-32005,"message":"method eth_getLogs in batch triggered rate limit"},"id":null,"jsonrpc":"2.0"}]}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:28"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:29"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:29"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:29"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:29"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:32:29"}
+{"level":"info","message":"🔇 RPC Manager not initialized (event listener disabled)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:39"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:39"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:39"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:40"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:41"}
+{"level":"info","message":"🔇 RPC Manager not initialized (event listener disabled)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:55"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:55"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:55"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:56"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:38:58"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:09"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:09"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:10"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:12"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:29"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:29"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:29"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:39:31"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:00"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:01"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:40:01"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:51"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:51"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:52"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:54"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:56"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:56"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:57"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:58"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:59"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:59"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:42:59"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:06"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:06"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:07"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:08"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:09"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:09"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:09"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:31"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:31"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:33"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:44:34"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:00"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:27"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:27"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:28"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:30"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:57"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:57"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:45:58"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:00"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:31"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:31"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:33"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:46:34"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:37"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:37"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:39"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:47:40"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:50:00"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:27"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:27"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:29"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:30"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:31"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:31"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:52:31"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:47"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:47"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:49"}
+{"level":"info","message":"✅ Database indexes created successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-18 11:53:50"}

@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import Level from '../models/Level.js';
 import Investment from '../models/Investment.js';
 import logger from '../utils/logger.js';
+import rpcManager from '../utils/rpcManager.js';
 
 // Contract ABI (simplified for events we need)
 const DWC_ABI = [
@@ -46,47 +47,59 @@ const RPC_URL = process.env.BSC_RPC_URL || 'https://bsc-dataseed1.binance.org/';
 
 class EventListener {
   constructor() {
-    this.provider = new ethers.JsonRpcProvider(RPC_URL);
-    this.contract = new ethers.Contract(CONTRACT_ADDRESS, DWC_ABI, this.provider);
+    this.rpcManager = rpcManager;
+    this.provider = null;
+    this.contract = null;
     this.isListening = false;
     this.lastProcessedBlock = 0;
+    this.isProcessingHistorical = false;
   }
 
   async start() {
     try {
       logger.info('🎧 Starting contract event listener...');
-      
-      // Get the latest block number
-      const latestBlock = await this.provider.getBlockNumber();
+
+      // Initialize provider and contract using RPC manager
+      this.provider = await this.rpcManager.getProvider();
+      this.contract = new ethers.Contract(CONTRACT_ADDRESS, DWC_ABI, this.provider);
+
+      // Get the latest block number using RPC manager
+      const latestBlock = await this.rpcManager.getBlockNumber();
       this.lastProcessedBlock = latestBlock;
-      
+
       logger.info(`📊 Latest block: ${latestBlock}`);
       logger.info(`📍 Contract address: ${CONTRACT_ADDRESS}`);
-      
+
       // Listen to Registration events
       this.contract.on('Registration', async (user, referrer, userId, referrerId, event) => {
         await this.handleRegistrationEvent(user, referrer, userId, referrerId, event);
       });
-      
+
       // Listen to Deposit events
       this.contract.on('Deposit', async (addr, amount, token, event) => {
         await this.handleDepositEvent(addr, amount, token, event);
       });
-      
+
       // Listen to Transaction events (for income tracking)
       this.contract.on('Transaction', async (user, from, value, level, type, event) => {
         await this.handleTransactionEvent(user, from, value, level, type, event);
       });
-      
+
       this.isListening = true;
       logger.info('✅ Event listener started successfully');
-      
-      // Process historical events
-      await this.processHistoricalEvents();
-      
+
+      // Skip historical events processing to avoid rate limiting
+      // Only process historical events if explicitly enabled
+      if (process.env.PROCESS_HISTORICAL_EVENTS === 'true') {
+        logger.info('📚 Historical events processing enabled');
+        await this.processHistoricalEvents();
+      } else {
+        logger.info('📚 Historical events processing disabled (to avoid rate limiting)');
+      }
+
     } catch (error) {
       logger.error('❌ Error starting event listener:', error);
-      throw error;
+      // Don't throw error, just log it to prevent server crash
     }
   }
 
@@ -274,64 +287,110 @@ class EventListener {
   }
 
   async processHistoricalEvents() {
+    if (this.isProcessingHistorical) {
+      logger.info('⏳ Historical events processing already in progress, skipping...');
+      return;
+    }
+
+    this.isProcessingHistorical = true;
+
     try {
       logger.info('📚 Processing historical events...');
-      
+
       // Get start block from environment or use a default
       const startBlock = parseInt(process.env.START_BLOCK) || 0;
-      const currentBlock = await this.provider.getBlockNumber();
-      const batchSize = parseInt(process.env.BATCH_SIZE) || 1000;
-      
+      const currentBlock = await this.rpcManager.getBlockNumber();
+      const batchSize = parseInt(process.env.BATCH_SIZE) || 100; // Reduced batch size
+
       logger.info(`📊 Processing blocks ${startBlock} to ${currentBlock}`);
-      
-      // Process in batches to avoid RPC limits
+
+      // Process in smaller batches to avoid RPC limits
       for (let fromBlock = startBlock; fromBlock <= currentBlock; fromBlock += batchSize) {
         const toBlock = Math.min(fromBlock + batchSize - 1, currentBlock);
-        
+
         logger.info(`🔄 Processing batch: ${fromBlock} to ${toBlock}`);
-        
-        // Get Registration events
-        const registrationEvents = await this.contract.queryFilter(
-          this.contract.filters.Registration(),
-          fromBlock,
-          toBlock
-        );
-        
-        // Get Deposit events
-        const depositEvents = await this.contract.queryFilter(
-          this.contract.filters.Deposit(),
-          fromBlock,
-          toBlock
-        );
-        
-        // Process events
-        for (const event of registrationEvents) {
-          await this.handleRegistrationEvent(
-            event.args.user,
-            event.args.referrer,
-            event.args.userId,
-            event.args.referrerId,
-            event
-          );
+
+        try {
+          // Use RPC manager for getting logs with retry logic
+          const registrationFilter = {
+            address: CONTRACT_ADDRESS,
+            topics: [ethers.id("Registration(address,address,uint256,uint256)")],
+            fromBlock: ethers.toBeHex(fromBlock),
+            toBlock: ethers.toBeHex(toBlock)
+          };
+
+          const depositFilter = {
+            address: CONTRACT_ADDRESS,
+            topics: [ethers.id("Deposit(address,uint256,address)")],
+            fromBlock: ethers.toBeHex(fromBlock),
+            toBlock: ethers.toBeHex(toBlock)
+          };
+
+          // Get events using RPC manager with retry logic
+          const registrationLogs = await this.rpcManager.getLogs(registrationFilter);
+          const depositLogs = await this.rpcManager.getLogs(depositFilter);
+
+          // Process registration events
+          for (const log of registrationLogs) {
+            try {
+              const parsedLog = this.contract.interface.parseLog(log);
+              if (parsedLog) {
+                await this.handleRegistrationEvent(
+                  parsedLog.args.user,
+                  parsedLog.args.referrer,
+                  parsedLog.args.userId,
+                  parsedLog.args.referrerId,
+                  { blockNumber: log.blockNumber, transactionHash: log.transactionHash }
+                );
+              }
+            } catch (parseError) {
+              logger.debug(`⚠️ Failed to parse registration log: ${parseError.message}`);
+            }
+          }
+
+          // Process deposit events
+          for (const log of depositLogs) {
+            try {
+              const parsedLog = this.contract.interface.parseLog(log);
+              if (parsedLog) {
+                await this.handleDepositEvent(
+                  parsedLog.args.addr,
+                  parsedLog.args.amount,
+                  parsedLog.args.token,
+                  { blockNumber: log.blockNumber, transactionHash: log.transactionHash }
+                );
+              }
+            } catch (parseError) {
+              logger.debug(`⚠️ Failed to parse deposit log: ${parseError.message}`);
+            }
+          }
+
+        } catch (batchError) {
+          // Log the error but continue with next batch
+          logger.warn(`⚠️ Error processing batch ${fromBlock}-${toBlock}: ${batchError.message}`);
+
+          // If it's a rate limit error, wait longer
+          if (batchError.message.includes('rate limit') || batchError.code === -32005) {
+            logger.info('⏳ Rate limit detected, waiting 10 seconds before continuing...');
+            await new Promise(resolve => setTimeout(resolve, 10000));
+          }
         }
-        
-        for (const event of depositEvents) {
-          await this.handleDepositEvent(
-            event.args.addr,
-            event.args.amount,
-            event.args.token,
-            event
-          );
-        }
-        
-        // Small delay to avoid overwhelming the RPC
-        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Longer delay between batches to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
-      
+
       logger.info('✅ Historical events processing completed');
-      
+
     } catch (error) {
-      logger.error('❌ Error processing historical events:', error);
+      // Suppress the detailed error logs that are causing noise
+      if (error.message.includes('rate limit') || error.code === -32005) {
+        logger.warn('⚠️ Historical events processing stopped due to rate limiting');
+      } else {
+        logger.error('❌ Error processing historical events:', error.message);
+      }
+    } finally {
+      this.isProcessingHistorical = false;
     }
   }
 

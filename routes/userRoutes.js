@@ -459,4 +459,103 @@ async function createDeeperLevels(userAddress, originalReferrer, currentLevel) {
   }
 }
 
+// Import users from JSON data
+router.post('/import', async (req, res) => {
+  try {
+    const { users, clearExisting = false } = req.body;
+
+    if (!users || !Array.isArray(users)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Users array is required'
+      });
+    }
+
+    logger.info(`🌱 Starting import of ${users.length} users`, { service: 'bdc-mlm-backend' });
+
+    // Clear existing users if requested
+    if (clearExisting) {
+      await User.deleteMany({});
+      logger.info('🧹 Existing users cleared', { service: 'bdc-mlm-backend' });
+    }
+
+    // Transform and import users
+    const transformedUsers = users.map(userData => ({
+      walletAddress: userData.walletAddress.toLowerCase(),
+      referrerAddress: userData.referrerAddress ? userData.referrerAddress.toLowerCase() : null,
+      registrationTime: new Date(userData.registrationTime.$date || userData.registrationTime),
+      status: userData.status || 'active',
+      deposits: userData.deposits.map(deposit => ({
+        amount: deposit.amount,
+        txHash: deposit.txHash,
+        blockNumber: deposit.blockNumber,
+        timestamp: new Date(deposit.timestamp.$date || deposit.timestamp)
+      }))
+    }));
+
+    let successCount = 0;
+    let skipCount = 0;
+    let errorCount = 0;
+    const errors = [];
+
+    // Import users one by one to handle duplicates gracefully
+    for (const userData of transformedUsers) {
+      try {
+        // Check if user already exists
+        const existingUser = await User.findOne({
+          walletAddress: userData.walletAddress
+        });
+
+        if (existingUser && !clearExisting) {
+          skipCount++;
+          continue;
+        }
+
+        // Create or update user
+        if (existingUser && clearExisting) {
+          await User.findOneAndUpdate(
+            { walletAddress: userData.walletAddress },
+            userData,
+            { new: true }
+          );
+        } else {
+          const newUser = new User(userData);
+          await newUser.save();
+        }
+
+        successCount++;
+
+      } catch (error) {
+        errorCount++;
+        errors.push({
+          walletAddress: userData.walletAddress,
+          error: error.message
+        });
+      }
+    }
+
+    logger.info(`✅ Import completed: ${successCount} success, ${skipCount} skipped, ${errorCount} errors`, { service: 'bdc-mlm-backend' });
+
+    res.json({
+      success: true,
+      message: 'Users import completed',
+      results: {
+        total: users.length,
+        successful: successCount,
+        skipped: skipCount,
+        errors: errorCount,
+        errorDetails: errors
+      }
+    });
+
+  } catch (error) {
+    logger.error('❌ Error importing users:', error, { service: 'bdc-mlm-backend' });
+    res.status(500).json({
+      success: false,
+      message: 'Error importing users',
+      error: error.message
+    });
+  }
+});
+
 export default router;

@@ -6,8 +6,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
-    index: true
+    lowercase: true
   },
 
   // Referrer wallet address
@@ -91,7 +90,7 @@ userSchema.statics.getUsersByReferrer = function(referrerAddress) {
 
 // Indexes
 userSchema.index({ walletAddress: 1 }, { unique: true });
-userSchema.index({ referrerAddress: 1 });
+// userSchema.index({ referrerAddress: 1 });
 userSchema.index({ status: 1 });
 userSchema.index({ registrationTime: -1 });
 

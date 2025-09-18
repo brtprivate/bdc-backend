@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "68c93a3fe98dcde70f559ed2"
+  },
+  "walletAddress": "0xa841371376190547e54c8fa72b0e684191e756c7",
+  "referrerAddress": "0xc65ceba099dd9392bb324d700f7ff61ef2f38f1f",
+  "registrationTime": {
+    "$date": "2025-09-16T10:21:51.104Z"
+  },
+  "status": "active",
+  "deposits": [
+    {
+      "amount": 1000,
+      "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "blockNumber": 12345,
+      "timestamp": {
+        "$date": "2025-09-16T10:41:46.989Z"
+      },
+      "_id": {
+        "$oid": "68c93eeaa1d15829958b368c"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-09-16T10:21:51.112Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-16T10:41:46.995Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68c93a3fe98dcde70f559ed3"
+  },
+  "walletAddress": "0xc65ceba099dd9392bb324d700f7ff61ef2f38f1f",
+  "referrerAddress": "0xc65ceba099dd9392bb324d700f7ff61ef2f38f12",
+  "registrationTime": {
+    "$date": "2025-09-16T10:21:51.104Z"
+  },
+  "status": "active",
+  "deposits": [],
+  "createdAt": {
+    "$date": "2025-09-16T10:21:51.112Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-16T10:21:51.112Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c93ed9a1d15829958b367b"
+  },
+  "walletAddress": "0x6ccb225ef69e91c5d2432c19d39d838119b8cb5d",
+  "referrerAddress": "0xa841371376190547e54c8fa72b0e684191e756c7",
+  "registrationTime": {
+    "$date": "2025-09-16T10:41:29.277Z"
+  },
+  "status": "active",
+  "deposits": [],
+  "createdAt": {
+    "$date": "2025-09-16T10:41:29.293Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-16T10:41:29.293Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c9471938474afe32cef42b"
+  },
+  "walletAddress": "0x8ace33fe8f5f7542b62407520855622f8cf07218",
+  "referrerAddress": "0xc65ceba099dd9392bb324d700f7ff61ef2f38f1f",
+  "registrationTime": {
+    "$date": "2025-09-16T11:16:41.546Z"
+  },
+  "status": "active",
+  "deposits": [],
+  "createdAt": {
+    "$date": "2025-09-16T11:16:41.564Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-16T11:16:41.564Z"
+  },
+  "__v": 0
+}]

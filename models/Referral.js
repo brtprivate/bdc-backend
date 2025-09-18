@@ -5,8 +5,7 @@ const referralSchema = new mongoose.Schema({
   referrer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
-    index: true
+    required: true
   },
   
   referrerAddress: {
@@ -19,8 +18,7 @@ const referralSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
-    index: true
+    required: true
   },
   
   userAddress: {
@@ -299,7 +297,7 @@ referralSchema.statics.getTopReferrers = function(level, limit = 10) {
 referralSchema.index({ referrer: 1, level: 1 });
 referralSchema.index({ user: 1, level: 1 });
 referralSchema.index({ level: 1, isActive: 1 });
-referralSchema.index({ referrerAddress: 1, level: 1 });
+// referralSchema.index({ referrerAddress: 1, level: 1 });
 referralSchema.index({ userAddress: 1 });
 referralSchema.index({ createdAt: -1 });
 referralSchema.index({ blockNumber: 1 });
