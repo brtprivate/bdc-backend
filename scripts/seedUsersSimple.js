@@ -1,11 +1,16 @@
+console.log('🚀 Script starting...');
+
 import mongoose from 'mongoose';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
+console.log('📦 Imports loaded');
+
 // Load environment variables
 dotenv.config();
+console.log('⚙️ Environment loaded');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
