@@ -90,9 +90,12 @@ userSchema.statics.getUsersByReferrer = function(referrerAddress) {
 
 // Indexes
 userSchema.index({ walletAddress: 1 }, { unique: true });
-// userSchema.index({ referrerAddress: 1 });
+userSchema.index({ referrerAddress: 1 }); // Critical for team queries
 userSchema.index({ status: 1 });
 userSchema.index({ registrationTime: -1 });
+// Compound indexes for better performance
+userSchema.index({ referrerAddress: 1, status: 1 });
+userSchema.index({ status: 1, registrationTime: -1 });
 
 const User = mongoose.model('User', userSchema);
 

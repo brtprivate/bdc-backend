@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import Level from '../models/Level.js';
 import Investment from '../models/Investment.js';
 import logger from '../utils/logger.js';
+import cacheManager from '../utils/cache.js';
 
 const router = express.Router();
 
@@ -476,6 +477,20 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
   try {
     const { walletAddress } = req.params;
 
+    // Generate cache key
+    const cacheKey = cacheManager.generateKey('referral_stats', walletAddress.toLowerCase());
+
+    // Try to get from cache first
+    const cachedResult = cacheManager.get(cacheKey);
+    if (cachedResult) {
+      logger.info(`🎯 Cache hit for referral stats: ${walletAddress}`);
+      return res.json({
+        ...cachedResult,
+        cached: true,
+        cacheTimestamp: new Date().toISOString()
+      });
+    }
+
     const user = await User.findByWallet(walletAddress);
     if (!user) {
       return res.status(404).json({
@@ -544,7 +559,7 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
       totalTeamInvestment += levelInvestment;
     }
 
-    res.json({
+    const result = {
       userAddress: walletAddress.toLowerCase(),
       directReferrals: {
         count: directReferrals.length,
@@ -563,10 +578,398 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
         averageEarningsPerUser: 0
       },
       timestamp: new Date().toISOString()
-    });
+    };
+
+    // Cache the result for 5 minutes
+    cacheManager.set(cacheKey, result, 300);
+    logger.info(`💾 Cached referral stats for: ${walletAddress}`);
+
+    res.json(result);
 
   } catch (error) {
     logger.error('Error getting referral stats (direct):', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
+// Get users at specific level
+router.get('/level/:walletAddress/:levelNumber', async (req, res) => {
+  const startTime = Date.now();
+  const { walletAddress, levelNumber } = req.params;
+  const level = parseInt(levelNumber);
+
+  try {
+    // Check cache first
+    const cacheKey = cacheManager.generateKey('level_users', walletAddress.toLowerCase(), level);
+    const cached = cacheManager.get(cacheKey);
+    if (cached) {
+      logger.info(`🚀 Cache hit for level users: ${walletAddress} level ${level}`, {
+        service: 'bdc-mlm-backend',
+        duration: Date.now() - startTime
+      });
+      return res.json(cached);
+    }
+
+    // Get users at specific level using aggregation
+    const pipeline = [
+      { $match: { walletAddress: walletAddress.toLowerCase() } },
+      {
+        $graphLookup: {
+          from: 'users',
+          startWith: '$walletAddress',
+          connectFromField: 'walletAddress',
+          connectToField: 'referrerAddress',
+          as: 'descendants',
+          maxDepth: level - 1,
+          depthField: 'level'
+        }
+      },
+      { $unwind: '$descendants' },
+      { $match: { 'descendants.level': level - 1 } },
+      {
+        $replaceRoot: { newRoot: '$descendants' }
+      },
+      {
+        $project: {
+          walletAddress: 1,
+          referrerAddress: 1,
+          totalInvestment: 1,
+          registrationTime: 1,
+          status: 1,
+          level: 1
+        }
+      },
+      { $sort: { registrationTime: -1 } },
+      { $limit: 100 } // Limit to prevent large responses
+    ];
+
+    const users = await User.aggregate(pipeline);
+
+    const result = {
+      level,
+      users,
+      count: users.length,
+      totalInvestment: users.reduce((sum, user) => sum + (user.totalInvestment || 0), 0)
+    };
+
+    // Cache for 5 minutes
+    cacheManager.set(cacheKey, result);
+
+    logger.info(`✅ Level users fetched: ${walletAddress} level ${level}`, {
+      service: 'bdc-mlm-backend',
+      count: users.length,
+      duration: Date.now() - startTime
+    });
+
+    res.json(result);
+  } catch (error) {
+    logger.error(`❌ Error fetching level users: ${error.message}`, {
+      service: 'bdc-mlm-backend',
+      walletAddress,
+      level,
+      error: error.message,
+      stack: error.stack
+    });
+    res.status(500).json({ error: 'Failed to fetch level users' });
+  }
+});
+
+// Ultra-optimized referral tree endpoint using aggregation pipelines
+router.get('/tree-ultra-optimized/:walletAddress', async (req, res) => {
+  try {
+    const { walletAddress } = req.params;
+    const levels = Math.min(parseInt(req.query.levels) || 21, 21);
+    const limit = Math.min(parseInt(req.query.limit) || 100, 500);
+
+    // Generate cache key
+    const cacheKey = cacheManager.generateKey('referral_tree_ultra', walletAddress.toLowerCase(), levels, limit);
+
+    // Try to get from cache first
+    const cachedResult = cacheManager.getLongTerm(cacheKey);
+    if (cachedResult) {
+      logger.info(`🎯 Cache hit for referral tree: ${walletAddress}`);
+      return res.json({
+        ...cachedResult,
+        cached: true,
+        cacheTimestamp: new Date().toISOString()
+      });
+    }
+
+    const user = await User.findByWallet(walletAddress);
+    if (!user) {
+      return res.status(404).json({
+        error: 'User not found'
+      });
+    }
+
+    // Use aggregation pipeline to get all team data in one query
+    const pipeline = [
+      {
+        $match: {
+          walletAddress: walletAddress.toLowerCase()
+        }
+      },
+      {
+        $graphLookup: {
+          from: 'users',
+          startWith: '$walletAddress',
+          connectFromField: 'walletAddress',
+          connectToField: 'referrerAddress',
+          as: 'teamMembers',
+          maxDepth: levels - 1,
+          depthField: 'level'
+        }
+      },
+      {
+        $unwind: {
+          path: '$teamMembers',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $lookup: {
+          from: 'investments',
+          localField: 'teamMembers.walletAddress',
+          foreignField: 'userAddress',
+          as: 'teamMembers.investments'
+        }
+      },
+      {
+        $addFields: {
+          'teamMembers.totalInvestment': {
+            $sum: '$teamMembers.investments.amount'
+          },
+          'teamMembers.level': {
+            $add: ['$teamMembers.level', 1]
+          }
+        }
+      },
+      {
+        $group: {
+          _id: '$teamMembers.level',
+          users: {
+            $push: {
+              $cond: [
+                { $ne: ['$teamMembers', null] },
+                {
+                  userAddress: '$teamMembers.walletAddress',
+                  totalInvestment: '$teamMembers.totalInvestment',
+                  depositCount: { $size: { $ifNull: ['$teamMembers.deposits', []] } },
+                  registrationTime: '$teamMembers.registrationTime',
+                  status: '$teamMembers.status'
+                },
+                null
+              ]
+            }
+          },
+          userCount: {
+            $sum: {
+              $cond: [{ $ne: ['$teamMembers', null] }, 1, 0]
+            }
+          },
+          totalInvestment: {
+            $sum: {
+              $cond: [
+                { $ne: ['$teamMembers', null] },
+                '$teamMembers.totalInvestment',
+                0
+              ]
+            }
+          }
+        }
+      },
+      {
+        $match: {
+          _id: { $ne: null, $lte: levels }
+        }
+      },
+      {
+        $sort: { _id: 1 }
+      }
+    ];
+
+    const results = await User.aggregate(pipeline);
+
+    const tree = {};
+    const levelStats = {};
+    let totalTeamSize = 0;
+    let totalTeamInvestment = 0;
+
+    // Process aggregation results
+    for (const levelData of results) {
+      const level = levelData._id;
+      if (level && level <= levels) {
+        // Filter out null users and apply limit
+        const validUsers = levelData.users.filter(user => user !== null).slice(0, limit);
+
+        tree[`level${level}`] = validUsers;
+        levelStats[`level${level}`] = {
+          userCount: levelData.userCount,
+          totalInvestment: levelData.totalInvestment,
+          totalEarnings: 0 // Will be calculated separately if needed
+        };
+
+        totalTeamSize += levelData.userCount;
+        totalTeamInvestment += levelData.totalInvestment;
+      }
+    }
+
+    const result = {
+      referrerAddress: walletAddress.toLowerCase(),
+      tree,
+      levelStats,
+      totalTeamSize,
+      totalTeamInvestment,
+      totalTeamEarnings: 0,
+      timestamp: new Date().toISOString(),
+      optimized: true,
+      method: 'aggregation-pipeline'
+    };
+
+    // Cache the result for 30 minutes
+    cacheManager.setLongTerm(cacheKey, result, 1800);
+    logger.info(`💾 Cached referral tree for: ${walletAddress}`);
+
+    res.json(result);
+
+  } catch (error) {
+    logger.error('Error getting ultra-optimized referral tree:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    });
+  }
+});
+
+// Optimized referral tree endpoint with better performance (keep existing for compatibility)
+router.get('/tree-optimized/:walletAddress', async (req, res) => {
+  try {
+    const { walletAddress } = req.params;
+    const levels = Math.min(parseInt(req.query.levels) || 21, 21);
+    const limit = Math.min(parseInt(req.query.limit) || 100, 500); // Limit total users returned
+
+    const user = await User.findByWallet(walletAddress);
+    if (!user) {
+      return res.status(404).json({
+        error: 'User not found'
+      });
+    }
+
+    const tree = {};
+    const levelStats = {};
+    let totalTeamSize = 0;
+    let totalTeamInvestment = 0;
+    let totalUsersReturned = 0;
+
+    // Optimized function to get users at a specific level with aggregation
+    const getUsersAtLevelOptimized = async (currentReferrer, targetLevel, currentLevel = 1) => {
+      if (currentLevel > 21 || totalUsersReturned >= limit) return [];
+
+      // Use aggregation pipeline for better performance
+      const pipeline = [
+        {
+          $match: {
+            referrerAddress: currentReferrer.toLowerCase(),
+            status: 'active'
+          }
+        },
+        {
+          $lookup: {
+            from: 'investments',
+            localField: 'walletAddress',
+            foreignField: 'userAddress',
+            as: 'investments'
+          }
+        },
+        {
+          $addFields: {
+            totalInvestment: {
+              $sum: '$investments.amount'
+            },
+            depositCount: {
+              $size: '$deposits'
+            }
+          }
+        },
+        {
+          $project: {
+            walletAddress: 1,
+            totalInvestment: 1,
+            depositCount: 1,
+            registrationTime: 1,
+            status: 1,
+            referrerAddress: 1
+          }
+        }
+      ];
+
+      if (currentLevel === targetLevel) {
+        // We found users at the target level
+        const directReferrals = await User.aggregate(pipeline);
+        const remainingLimit = limit - totalUsersReturned;
+        const usersToReturn = directReferrals.slice(0, remainingLimit);
+        totalUsersReturned += usersToReturn.length;
+
+        return usersToReturn.map(userRef => ({
+          userAddress: userRef.walletAddress,
+          totalInvestment: userRef.totalInvestment || 0,
+          totalEarnings: 0,
+          registrationTime: userRef.registrationTime,
+          isActive: userRef.status === 'active',
+          depositCount: userRef.depositCount || 0
+        }));
+      } else {
+        // Go deeper to find users at target level
+        const directReferrals = await User.aggregate(pipeline);
+        let usersAtThisLevel = [];
+
+        for (const userRef of directReferrals) {
+          if (totalUsersReturned >= limit) break;
+
+          const deeperUsers = await getUsersAtLevelOptimized(userRef.walletAddress, targetLevel, currentLevel + 1);
+          usersAtThisLevel = usersAtThisLevel.concat(deeperUsers);
+        }
+
+        return usersAtThisLevel;
+      }
+    };
+
+    // Get level data for each level
+    for (let level = 1; level <= levels && totalUsersReturned < limit; level++) {
+      const levelData = await getUsersAtLevelOptimized(walletAddress, level);
+
+      tree[`level${level}`] = levelData;
+
+      const levelInvestment = levelData.reduce((sum, item) => sum + item.totalInvestment, 0);
+      const levelEarnings = levelData.reduce((sum, item) => sum + item.totalEarnings, 0);
+
+      levelStats[`level${level}`] = {
+        userCount: levelData.length,
+        totalInvestment: levelInvestment,
+        totalEarnings: levelEarnings
+      };
+
+      totalTeamSize += levelData.length;
+      totalTeamInvestment += levelInvestment;
+    }
+
+    res.json({
+      referrerAddress: walletAddress.toLowerCase(),
+      tree,
+      levelStats,
+      totalTeamSize,
+      totalTeamInvestment,
+      totalTeamEarnings: 0,
+      totalUsersReturned,
+      limitReached: totalUsersReturned >= limit,
+      timestamp: new Date().toISOString()
+    });
+
+  } catch (error) {
+    logger.error('Error getting optimized referral tree:', error);
     res.status(500).json({
       error: 'Internal server error',
       message: error.message
