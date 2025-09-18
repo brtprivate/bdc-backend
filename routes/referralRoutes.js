@@ -595,6 +595,23 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
   }
 });
 
+// Test endpoint to get sample wallet addresses
+router.get('/test-wallets', async (req, res) => {
+  try {
+    const sampleUsers = await User.find({}).limit(5).select('walletAddress referrerAddress totalInvestment');
+    res.json({
+      success: true,
+      users: sampleUsers,
+      count: sampleUsers.length
+    });
+  } catch (error) {
+    logger.error(`❌ Error fetching test wallets: ${error.message}`, {
+      service: 'bdc-mlm-backend'
+    });
+    res.status(500).json({ error: 'Failed to fetch test wallets' });
+  }
+});
+
 // Get users at specific level
 router.get('/level/:walletAddress/:levelNumber', async (req, res) => {
   const startTime = Date.now();
@@ -612,6 +629,19 @@ router.get('/level/:walletAddress/:levelNumber', async (req, res) => {
       });
       return res.json(cached);
     }
+
+    // Debug: Check if user exists
+    const rootUser = await User.findOne({ walletAddress: walletAddress.toLowerCase() });
+    if (!rootUser) {
+      logger.warn(`❌ Root user not found: ${walletAddress}`, {
+        service: 'bdc-mlm-backend'
+      });
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    logger.info(`🔍 Found root user: ${rootUser.walletAddress}`, {
+      service: 'bdc-mlm-backend'
+    });
 
     // Get users at specific level using aggregation
     const pipeline = [
@@ -646,7 +676,67 @@ router.get('/level/:walletAddress/:levelNumber', async (req, res) => {
       { $limit: 100 } // Limit to prevent large responses
     ];
 
-    const users = await User.aggregate(pipeline);
+    logger.info(`🔍 Running aggregation pipeline for level ${level}`, {
+      service: 'bdc-mlm-backend',
+      pipeline: JSON.stringify(pipeline, null, 2)
+    });
+
+    let users = await User.aggregate(pipeline);
+
+    logger.info(`📊 Aggregation result: ${users.length} users found`, {
+      service: 'bdc-mlm-backend',
+      level,
+      userCount: users.length
+    });
+
+    // If aggregation returns no results, try the recursive approach as fallback
+    if (users.length === 0) {
+      logger.info(`🔄 Aggregation returned no results, trying recursive approach...`, {
+        service: 'bdc-mlm-backend'
+      });
+
+      // Recursive function to get users at specific level (fallback)
+      const getUsersAtLevel = async (currentReferrer, targetLevel, currentLevel = 1) => {
+        if (currentLevel > 21) return [];
+
+        const directRefs = await User.find({
+          referrerAddress: currentReferrer.toLowerCase(),
+          status: 'active'
+        });
+
+        let usersAtThisLevel = [];
+
+        if (currentLevel === targetLevel) {
+          for (const userRef of directRefs) {
+            const investments = await Investment.find({
+              userAddress: userRef.walletAddress
+            });
+
+            usersAtThisLevel.push({
+              ...userRef.toObject(),
+              totalInvestment: investments.reduce((sum, inv) => sum + inv.amount, 0),
+              investments: investments,
+              level: currentLevel
+            });
+          }
+        } else {
+          for (const userRef of directRefs) {
+            const deeperUsers = await getUsersAtLevel(userRef.walletAddress, targetLevel, currentLevel + 1);
+            usersAtThisLevel = usersAtThisLevel.concat(deeperUsers);
+          }
+        }
+
+        return usersAtThisLevel;
+      };
+
+      users = await getUsersAtLevel(walletAddress, level);
+
+      logger.info(`📊 Recursive result: ${users.length} users found`, {
+        service: 'bdc-mlm-backend',
+        level,
+        userCount: users.length
+      });
+    }
 
     const result = {
       level,
