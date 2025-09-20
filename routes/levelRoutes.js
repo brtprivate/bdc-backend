@@ -462,7 +462,7 @@ router.get('/user/:walletAddress/summary', async (req, res) => {
       userAddress: walletAddress,
       quickStats: {
         personalInvestment: parseFloat(personalData.totalAmount.toFixed(6)),
-        personalDeposits: user.getTotalDeposits(),
+        personalDeposits: 0, // Will be calculated from investment data if user exists
         totalTeamSize,
         totalTeamInvestment: parseFloat(totalTeamInvestment.toFixed(6)),
         totalTeamEarnings: parseFloat(totalTeamEarnings.toFixed(6)),
