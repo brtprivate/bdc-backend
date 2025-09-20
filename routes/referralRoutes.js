@@ -379,12 +379,9 @@ router.get('/tree-direct/:walletAddress', async (req, res) => {
       });
     }
 
-    const user = await User.findByWallet(walletAddress);
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found'
-      });
-    }
+    // Note: We don't check if user exists - we fetch referral tree regardless
+    // This allows fetching tree even for users not registered in our database
+    const normalizedAddress = walletAddress.toLowerCase();
 
     const tree = {};
     const levelStats = {};
@@ -436,7 +433,7 @@ router.get('/tree-direct/:walletAddress', async (req, res) => {
 
     // Get level data for each level
     for (let level = 1; level <= levels; level++) {
-      const levelData = await getUsersAtLevel(walletAddress, level);
+      const levelData = await getUsersAtLevel(normalizedAddress, level);
 
       tree[`level${level}`] = levelData;
 
@@ -454,7 +451,7 @@ router.get('/tree-direct/:walletAddress', async (req, res) => {
     }
 
     res.json({
-      referrerAddress: walletAddress.toLowerCase(),
+      referrerAddress: normalizedAddress,
       tree,
       levelStats,
       totalTeamSize,
@@ -502,13 +499,8 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
 
     const normalizedAddress = walletAddress.toLowerCase();
 
-    // Check if user exists using optimized query
-    const userExists = await User.findOne({ walletAddress: normalizedAddress }, { _id: 1 });
-    if (!userExists) {
-      return res.status(404).json({
-        error: 'User not found'
-      });
-    }
+    // Note: We don't check if user exists - we fetch referral data regardless
+    // This allows fetching stats even for users not registered in our database
 
     // Ultra-optimized aggregation pipeline to get all referral stats in one query
     const pipeline = [
@@ -851,18 +843,15 @@ router.get('/tree-ultra-optimized/:walletAddress', async (req, res) => {
       });
     }
 
-    const user = await User.findByWallet(walletAddress);
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found'
-      });
-    }
+    // Note: We don't check if user exists - we fetch referral tree regardless
+    // This allows fetching tree even for users not registered in our database
+    const normalizedAddress = walletAddress.toLowerCase();
 
     // Use aggregation pipeline to get all team data in one query
     const pipeline = [
       {
         $match: {
-          walletAddress: walletAddress.toLowerCase()
+          walletAddress: normalizedAddress
         }
       },
       {

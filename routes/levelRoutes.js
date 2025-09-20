@@ -417,14 +417,8 @@ router.get('/user/:walletAddress/summary', async (req, res) => {
       });
     }
 
-    // Check if user exists
-    const user = await User.findByWallet(walletAddress);
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found',
-        walletAddress
-      });
-    }
+    // Note: We don't check if user exists - we fetch level summary regardless
+    // This allows fetching summary even for users not registered in our database
 
     // Get aggregated statistics using MongoDB aggregation for performance
     const [levelStats, personalStats] = await Promise.all([
