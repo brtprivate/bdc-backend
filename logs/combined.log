@@ -2639,3 +2639,55 @@
 {"level":"info","message":"🎯 Cache hit for referral stats: 0xC65Ceba099dD9392bb324d700F7fF61EF2F38f1F","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:31:24"}
 {"level":"info","message":"💾 Cached referral tree for: 0xC65Ceba099dD9392bb324d700F7fF61EF2F38f1F","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:31:27"}
 {"level":"info","message":"SIGINT received, shutting down gracefully","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:31:41"}
+{"level":"info","message":"🔇 Error suppression initialized","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:51"}
+{"level":"info","message":"ℹ️ Rate limiting and deprecated warnings will be suppressed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:51"}
+{"level":"info","message":"✅ Connected to MongoDB successfully","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:52"}
+{"$clusterTime":{"clusterTime":{"$timestamp":"7552067740765257745"},"signature":{"hash":"RJzTzKnIM+J+rsmmrRad3SVkO5M=","keyId":{"high":1746542210,"low":3,"unsigned":false}}},"code":11000,"codeName":"DuplicateKey","errorLabelSet":{},"errorResponse":{"$clusterTime":{"clusterTime":{"$timestamp":"7552067740765257745"},"signature":{"hash":"RJzTzKnIM+J+rsmmrRad3SVkO5M=","keyId":{"high":1746542210,"low":3,"unsigned":false}}},"code":11000,"codeName":"DuplicateKey","errmsg":"Index build failed: aacf25c0-4607-4558-a3c6-2ac4ec1428a0: Collection bdc.users ( f7cf271d-87be-4985-a0d5-ede6a7455df1 ) :: caused by :: E11000 duplicate key error collection: bdc.users index: referralCode_1 dup key: { referralCode: null }","keyPattern":{"referralCode":1},"keyValue":{"referralCode":null},"ok":0,"operationTime":{"$timestamp":"7552067740765257745"}},"keyPattern":{"referralCode":1},"keyValue":{"referralCode":null},"level":"error","message":"❌ Error creating indexes: Index build failed: aacf25c0-4607-4558-a3c6-2ac4ec1428a0: Collection bdc.users ( f7cf271d-87be-4985-a0d5-ede6a7455df1 ) :: caused by :: E11000 duplicate key error collection: bdc.users index: referralCode_1 dup key: { referralCode: null }","ok":0,"operationTime":{"$timestamp":"7552067740765257745"},"service":"bdc-mlm-backend","stack":"MongoServerError: Index build failed: aacf25c0-4607-4558-a3c6-2ac4ec1428a0: Collection bdc.users ( f7cf271d-87be-4985-a0d5-ede6a7455df1 ) :: caused by :: E11000 duplicate key error collection: bdc.users index: referralCode_1 dup key: { referralCode: null }\n    at Connection.sendCommand (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\cmap\\connection.js:305:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\cmap\\connection.js:333:26)\n    at async Server.command (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\sdam\\server.js:171:29)\n    at async CreateIndexesOperation.executeCommand (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async CreateIndexesOperation.execute (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\operations\\indexes.js:122:9)\n    at async tryOperation (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.createIndex (C:\\Users\\BRT\\Downloads\\web-projects\\new-bdc-main-net\\backend\\node_modules\\.pnpm\\mongodb@6.18.0\\node_modules\\mongodb\\lib\\collection.js:329:25)\n    at async createIndexes (file:///C:/Users/BRT/Downloads/web-projects/new-bdc-main-net/backend/server.js:247:5)","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"🎧 Event listener disabled (to prevent RPC rate limiting)","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"ℹ️ Set ENABLE_EVENT_LISTENER=true in .env to enable","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"🔄 Starting sync service...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"🚀 Server running on port 1735","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"🌍 Environment: development","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"📊 Health check: http://localhost:1735/health","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:53"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"📈 Level 1: 12 users, 2450 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"📈 Level 2: 3 users, 650 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"✅ Sync service started successfully","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:49:55"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"📈 Level 1: 12 users, 2450 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"📈 Level 2: 3 users, 650 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:01"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:02"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:50:02"}
+{"level":"info","message":"✅ New user created: 0x4069873c3D2E1938dEa7039c2852EC0e0cE1B759","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:52:12"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"📈 Level 1: 12 users, 2450 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"📈 Level 2: 3 users, 650 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 12:55:02"}
+{"level":"info","message":"🔄 Starting data synchronization...","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:00"}
+{"level":"info","message":"📊 Syncing user statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:00"}
+{"level":"info","message":"✅ User statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"📊 Syncing level statistics...","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"📈 Level 1: 12 users, 2450 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"📈 Level 2: 3 users, 650 investment, 0 earnings","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"✅ Level statistics sync completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"🧹 Cleaning up inactive records...","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:02"}
+{"level":"info","message":"✅ Cleanup completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:03"}
+{"level":"info","message":"✅ Data synchronization completed","service":"bdc-mlm-backend","timestamp":"2025-09-20 13:00:03"}

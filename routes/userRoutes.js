@@ -13,11 +13,11 @@ router.get('/:walletAddress', async (req, res) => {
     
     const user = await User.findByWallet(walletAddress);
     
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found'
-      });
-    }
+    // if (!user) {
+    //   return res.status(404).json({
+    //     error: 'User not found'
+    //   });
+    // }
     
     // Get user's investment statistics
     const investmentStats = await Investment.getUserTotalInvestment(walletAddress);
@@ -306,11 +306,11 @@ router.get('/:walletAddress/summary', async (req, res) => {
     
     const user = await User.findByWallet(walletAddress);
     
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found'
-      });
-    }
+    // if (!user) {
+    //   return res.status(404).json({
+    //     error: 'User not found'
+    //   });
+    // }
     
     // Get comprehensive statistics
     const [

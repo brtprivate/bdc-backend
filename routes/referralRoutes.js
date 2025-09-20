@@ -472,18 +472,19 @@ router.get('/tree-direct/:walletAddress', async (req, res) => {
   }
 });
 
-// Get referral stats using only User model (more reliable)
+// Ultra-optimized referral stats endpoint using aggregation pipelines
 router.get('/stats-direct/:walletAddress', async (req, res) => {
   try {
     const { walletAddress } = req.params;
+    const startTime = Date.now();
 
-    // Generate cache key
-    const cacheKey = cacheManager.generateKey('referral_stats', walletAddress.toLowerCase());
+    // Generate cache key with longer TTL for stats
+    const cacheKey = cacheManager.generateKey('referral_stats_v2', walletAddress.toLowerCase());
 
-    // Try to get from cache first
+    // Try to get from cache first (5 minute cache)
     const cachedResult = cacheManager.get(cacheKey);
     if (cachedResult) {
-      logger.info(`🎯 Cache hit for referral stats: ${walletAddress}`);
+      logger.info(`🎯 Cache hit for referral stats: ${walletAddress} (${Date.now() - startTime}ms)`);
       return res.json({
         ...cachedResult,
         cached: true,
@@ -491,76 +492,133 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
       });
     }
 
-    const user = await User.findByWallet(walletAddress);
-    if (!user) {
+    // Validate wallet address format
+    const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/i;
+    if (!ethAddressRegex.test(walletAddress)) {
+      return res.status(400).json({
+        error: 'Invalid wallet address format'
+      });
+    }
+
+    const normalizedAddress = walletAddress.toLowerCase();
+
+    // Check if user exists using optimized query
+    const userExists = await User.findOne({ walletAddress: normalizedAddress }, { _id: 1 });
+    if (!userExists) {
       return res.status(404).json({
         error: 'User not found'
       });
     }
 
-    // Get direct referrals
-    const directReferrals = await User.find({
-      referrerAddress: walletAddress.toLowerCase(),
-      status: 'active'
-    });
+    // Ultra-optimized aggregation pipeline to get all referral stats in one query
+    const pipeline = [
+      {
+        $match: {
+          $or: [
+            { walletAddress: normalizedAddress },
+            { referrerAddress: normalizedAddress }
+          ],
+          status: 'active'
+        }
+      },
+      {
+        $graphLookup: {
+          from: 'users',
+          startWith: normalizedAddress,
+          connectFromField: 'walletAddress',
+          connectToField: 'referrerAddress',
+          as: 'allReferrals',
+          maxDepth: 20, // 21 levels (0-20)
+          depthField: 'level'
+        }
+      },
+      {
+        $project: {
+          walletAddress: 1,
+          referrerAddress: 1,
+          registrationTime: 1,
+          status: 1,
+          allReferrals: {
+            $filter: {
+              input: '$allReferrals',
+              cond: { $eq: ['$$this.status', 'active'] }
+            }
+          }
+        }
+      }
+    ];
 
-    // Calculate level summary using the same logic as tree-direct
+    const [userWithReferrals] = await User.aggregate(pipeline);
+
+    if (!userWithReferrals) {
+      return res.status(404).json({
+        error: 'User not found or no referrals'
+      });
+    }
+
+    // Get direct referrals (level 0)
+    const directReferrals = userWithReferrals.allReferrals.filter(ref => ref.level === 0);
+
+    // Initialize level summary
     const levelSummary = {};
     let totalTeamSize = 0;
     let totalTeamInvestment = 0;
 
-    // Function to get users at a specific level (reuse from tree-direct)
-    const getUsersAtLevel = async (currentReferrer, targetLevel, currentLevel = 1) => {
-      if (currentLevel > 21) return [];
-
-      const directRefs = await User.find({
-        referrerAddress: currentReferrer.toLowerCase(),
-        status: 'active'
-      });
-
-      let usersAtThisLevel = [];
-
-      if (currentLevel === targetLevel) {
-        for (const userRef of directRefs) {
-          const investments = await Investment.find({
-            userAddress: userRef.walletAddress
-          });
-
-          const userInvestment = investments.reduce((sum, inv) => sum + inv.amount, 0);
-
-          usersAtThisLevel.push({
-            userAddress: userRef.walletAddress,
-            totalInvestment: userInvestment,
-            depositCount: userRef.deposits.length
-          });
-        }
-      } else {
-        for (const userRef of directRefs) {
-          const deeperUsers = await getUsersAtLevel(userRef.walletAddress, targetLevel, currentLevel + 1);
-          usersAtThisLevel = usersAtThisLevel.concat(deeperUsers);
-        }
-      }
-
-      return usersAtThisLevel;
-    };
-
-    // Get stats for each level
+    // Process each level (1-21)
     for (let level = 1; level <= 21; level++) {
-      const levelUsers = await getUsersAtLevel(walletAddress, level);
-      const levelInvestment = levelUsers.reduce((sum, user) => sum + user.totalInvestment, 0);
+      const levelUsers = userWithReferrals.allReferrals.filter(ref => ref.level === level - 1);
 
       levelSummary[`level${level}`] = {
         userCount: levelUsers.length,
-        totalInvestment: levelInvestment,
+        totalInvestment: 0, // Will be calculated if needed
         totalEarnings: 0
       };
 
       totalTeamSize += levelUsers.length;
-      totalTeamInvestment += levelInvestment;
+    }
+
+    // Get investment data for all team members in one query if needed
+    const allTeamAddresses = userWithReferrals.allReferrals.map(ref => ref.walletAddress);
+
+    // Quick investment summary using aggregation
+    if (allTeamAddresses.length > 0) {
+      const investmentPipeline = [
+        {
+          $match: {
+            userAddress: { $in: allTeamAddresses }
+          }
+        },
+        {
+          $group: {
+            _id: '$userAddress',
+            totalInvestment: { $sum: '$amount' },
+            depositCount: { $sum: 1 }
+          }
+        }
+      ];
+
+      const investmentData = await Investment.aggregate(investmentPipeline);
+      const investmentMap = new Map(investmentData.map(inv => [inv._id, inv]));
+
+      // Update level summaries with investment data
+      for (let level = 1; level <= 21; level++) {
+        const levelUsers = userWithReferrals.allReferrals.filter(ref => ref.level === level - 1);
+        let levelInvestment = 0;
+
+        for (const user of levelUsers) {
+          const userInvestment = investmentMap.get(user.walletAddress);
+          if (userInvestment) {
+            levelInvestment += userInvestment.totalInvestment;
+          }
+        }
+
+        levelSummary[`level${level}`].totalInvestment = levelInvestment;
+        totalTeamInvestment += levelInvestment;
+      }
     }
 
     const result = {
-      userAddress: walletAddress.toLowerCase(),
+      userAddress: normalizedAddress,
       directReferrals: {
         count: directReferrals.length,
         users: directReferrals.map(user => ({
@@ -576,6 +634,11 @@ router.get('/stats-direct/:walletAddress', async (req, res) => {
         totalTeamEarnings: 0,
         averageInvestmentPerUser: totalTeamSize > 0 ? totalTeamInvestment / totalTeamSize : 0,
         averageEarningsPerUser: 0
+      },
+      performance: {
+        queryTime: Date.now() - startTime,
+        optimized: true,
+        version: 'v2'
       },
       timestamp: new Date().toISOString()
     };
